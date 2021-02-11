@@ -34,6 +34,7 @@ export class AppuserUpdatePage {
   phoneInput = element(by.id('field_phone'));
   emailInput = element(by.id('field_email'));
   cifInput = element(by.id('field_cif'));
+  loginInput = element(by.id('field_login'));
 
   companySelect = element(by.id('field_company'));
 
@@ -79,6 +80,14 @@ export class AppuserUpdatePage {
 
   async getCifInput(): Promise<string> {
     return await this.cifInput.getAttribute('value');
+  }
+
+  async setLoginInput(login: string): Promise<void> {
+    await this.loginInput.sendKeys(login);
+  }
+
+  async getLoginInput(): Promise<string> {
+    return await this.loginInput.getAttribute('value');
   }
 
   async companySelectLastOption(): Promise<void> {

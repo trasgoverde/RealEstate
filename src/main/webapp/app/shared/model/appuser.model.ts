@@ -7,6 +7,7 @@ export interface IAppuser {
   phone?: string;
   email?: string;
   cif?: string;
+  login?: string;
   company?: ICompany;
 }
 
@@ -18,6 +19,7 @@ export class Appuser implements IAppuser {
     public phone?: string,
     public email?: string,
     public cif?: string,
+    public login?: string,
     public company?: ICompany
   ) {}
 }

@@ -46,6 +46,7 @@
                     <th scope="col"  jhiSortBy="phone"><span jhiTranslate="realEstateApp.appuser.phone">Phone</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="email"><span jhiTranslate="realEstateApp.appuser.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="cif"><span jhiTranslate="realEstateApp.appuser.cif">Cif</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="login"><span jhiTranslate="realEstateApp.appuser.login">Login</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="company.id"><span jhiTranslate="realEstateApp.appuser.company">Company</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
@@ -58,6 +59,7 @@
                     <td>{{ appuser.phone }}</td>
                     <td>{{ appuser.email }}</td>
                     <td>{{ appuser.cif }}</td>
+                    <td>{{ appuser.login }}</td>
                     <td>
                         <div *ngIf="appuser.company">
                             <a [routerLink]="['/company', appuser.company?.id, 'view']" >{{ appuser.company?.id }}</a>

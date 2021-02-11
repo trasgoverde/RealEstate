@@ -35,6 +35,13 @@
       "fieldValidateRules": [
         "required"
       ]
+    },
+    {
+      "fieldName": "login",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
     }
   ],
   "relationships": [

@@ -44,6 +44,10 @@ public class Appuser implements Serializable {
     @Column(name = "cif", nullable = false)
     private String cif;
 
+    @NotNull
+    @Column(name = "login", nullable = false)
+    private String login;
+
     @OneToOne
     @JoinColumn(unique = true)
     private Company company;
@@ -122,6 +126,19 @@ public class Appuser implements Serializable {
         this.cif = cif;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public Appuser login(String login) {
+        this.login = login;
+        return this;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     public Company getCompany() {
         return company;
     }
@@ -162,6 +179,7 @@ public class Appuser implements Serializable {
             ", phone='" + getPhone() + "'" +
             ", email='" + getEmail() + "'" +
             ", cif='" + getCif() + "'" +
+            ", login='" + getLogin() + "'" +
             "}";
     }
 }

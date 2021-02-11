@@ -26,6 +26,7 @@ export class AppuserUpdateComponent implements OnInit {
     phone: [null, [Validators.required]],
     email: [null, [Validators.required]],
     cif: [null, [Validators.required]],
+    login: [null, [Validators.required]],
     company: [],
   });
 
@@ -72,6 +73,7 @@ export class AppuserUpdateComponent implements OnInit {
       phone: appuser.phone,
       email: appuser.email,
       cif: appuser.cif,
+      login: appuser.login,
       company: appuser.company,
     });
   }
@@ -99,6 +101,7 @@ export class AppuserUpdateComponent implements OnInit {
       phone: this.editForm.get(['phone'])!.value,
       email: this.editForm.get(['email'])!.value,
       cif: this.editForm.get(['cif'])!.value,
+      login: this.editForm.get(['login'])!.value,
       company: this.editForm.get(['company'])!.value,
     };
   }

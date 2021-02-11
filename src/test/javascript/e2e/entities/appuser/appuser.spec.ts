@@ -46,6 +46,7 @@ describe('Appuser e2e test', () => {
       appuserUpdatePage.setPhoneInput('phone'),
       appuserUpdatePage.setEmailInput('email'),
       appuserUpdatePage.setCifInput('cif'),
+      appuserUpdatePage.setLoginInput('login'),
       appuserUpdatePage.companySelectLastOption(),
     ]);
 
@@ -54,6 +55,7 @@ describe('Appuser e2e test', () => {
     expect(await appuserUpdatePage.getPhoneInput()).to.eq('phone', 'Expected Phone value to be equals to phone');
     expect(await appuserUpdatePage.getEmailInput()).to.eq('email', 'Expected Email value to be equals to email');
     expect(await appuserUpdatePage.getCifInput()).to.eq('cif', 'Expected Cif value to be equals to cif');
+    expect(await appuserUpdatePage.getLoginInput()).to.eq('login', 'Expected Login value to be equals to login');
 
     await appuserUpdatePage.save();
     expect(await appuserUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;

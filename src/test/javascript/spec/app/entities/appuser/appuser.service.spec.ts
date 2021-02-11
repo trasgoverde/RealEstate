@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(AppuserService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Appuser(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Appuser(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -59,6 +59,7 @@ describe('Service Tests', () => {
             phone: 'BBBBBB',
             email: 'BBBBBB',
             cif: 'BBBBBB',
+            login: 'BBBBBB',
           },
           elemDefault
         );
@@ -80,6 +81,7 @@ describe('Service Tests', () => {
             phone: 'BBBBBB',
             email: 'BBBBBB',
             cif: 'BBBBBB',
+            login: 'BBBBBB',
           },
           elemDefault
         );

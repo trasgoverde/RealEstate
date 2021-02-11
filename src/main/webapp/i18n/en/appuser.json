@@ -22,6 +22,7 @@
       "phone": "Phone",
       "email": "Email",
       "cif": "Cif",
+      "login": "Login",
       "company": "Company"
     }
   }

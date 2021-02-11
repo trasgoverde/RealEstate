@@ -54,6 +54,9 @@ public class AppuserResourceIT {
     private static final String DEFAULT_CIF = "AAAAAAAAAA";
     private static final String UPDATED_CIF = "BBBBBBBBBB";
 
+    private static final String DEFAULT_LOGIN = "AAAAAAAAAA";
+    private static final String UPDATED_LOGIN = "BBBBBBBBBB";
+
     @Autowired
     private AppuserRepository appuserRepository;
 
@@ -85,7 +88,8 @@ public class AppuserResourceIT {
             .lastName(DEFAULT_LAST_NAME)
             .phone(DEFAULT_PHONE)
             .email(DEFAULT_EMAIL)
-            .cif(DEFAULT_CIF);
+            .cif(DEFAULT_CIF)
+            .login(DEFAULT_LOGIN);
         return appuser;
     }
     /**
@@ -100,7 +104,8 @@ public class AppuserResourceIT {
             .lastName(UPDATED_LAST_NAME)
             .phone(UPDATED_PHONE)
             .email(UPDATED_EMAIL)
-            .cif(UPDATED_CIF);
+            .cif(UPDATED_CIF)
+            .login(UPDATED_LOGIN);
         return appuser;
     }
 
@@ -128,6 +133,7 @@ public class AppuserResourceIT {
         assertThat(testAppuser.getPhone()).isEqualTo(DEFAULT_PHONE);
         assertThat(testAppuser.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testAppuser.getCif()).isEqualTo(DEFAULT_CIF);
+        assertThat(testAppuser.getLogin()).isEqualTo(DEFAULT_LOGIN);
 
         // Validate the Appuser in Elasticsearch
         verify(mockAppuserSearchRepository, times(1)).save(testAppuser);
@@ -253,6 +259,25 @@ public class AppuserResourceIT {
 
     @Test
     @Transactional
+    public void checkLoginIsRequired() throws Exception {
+        int databaseSizeBeforeTest = appuserRepository.findAll().size();
+        // set the field null
+        appuser.setLogin(null);
+
+        // Create the Appuser, which fails.
+
+
+        restAppuserMockMvc.perform(post("/api/appusers")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(appuser)))
+            .andExpect(status().isBadRequest());
+
+        List<Appuser> appuserList = appuserRepository.findAll();
+        assertThat(appuserList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllAppusers() throws Exception {
         // Initialize the database
         appuserRepository.saveAndFlush(appuser);
@@ -266,7 +291,8 @@ public class AppuserResourceIT {
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].cif").value(hasItem(DEFAULT_CIF)));
+            .andExpect(jsonPath("$.[*].cif").value(hasItem(DEFAULT_CIF)))
+            .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN)));
     }
     
     @Test
@@ -284,7 +310,8 @@ public class AppuserResourceIT {
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME))
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
-            .andExpect(jsonPath("$.cif").value(DEFAULT_CIF));
+            .andExpect(jsonPath("$.cif").value(DEFAULT_CIF))
+            .andExpect(jsonPath("$.login").value(DEFAULT_LOGIN));
     }
     @Test
     @Transactional
@@ -311,7 +338,8 @@ public class AppuserResourceIT {
             .lastName(UPDATED_LAST_NAME)
             .phone(UPDATED_PHONE)
             .email(UPDATED_EMAIL)
-            .cif(UPDATED_CIF);
+            .cif(UPDATED_CIF)
+            .login(UPDATED_LOGIN);
 
         restAppuserMockMvc.perform(put("/api/appusers")
             .contentType(MediaType.APPLICATION_JSON)
@@ -327,6 +355,7 @@ public class AppuserResourceIT {
         assertThat(testAppuser.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testAppuser.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testAppuser.getCif()).isEqualTo(UPDATED_CIF);
+        assertThat(testAppuser.getLogin()).isEqualTo(UPDATED_LOGIN);
 
         // Validate the Appuser in Elasticsearch
         verify(mockAppuserSearchRepository, times(1)).save(testAppuser);
@@ -390,6 +419,7 @@ public class AppuserResourceIT {
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].cif").value(hasItem(DEFAULT_CIF)));
+            .andExpect(jsonPath("$.[*].cif").value(hasItem(DEFAULT_CIF)))
+            .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN)));
     }
 }

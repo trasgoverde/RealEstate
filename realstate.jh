@@ -5,7 +5,8 @@ entity Appuser{
     lastName String required,
     phone String required,
     email String required,
-    cif	String required
+    cif	String required,
+    login String required
 }
 
 entity Company{

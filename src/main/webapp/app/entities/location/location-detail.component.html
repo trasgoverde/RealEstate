@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="location">
+            <h2><span jhiTranslate="realEstateApp.location.detail.title">Location</span> {{ location.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="realEstateApp.location.ref">Ref</span></dt>
+                <dd>
+                    <span>{{ location.ref }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.location.province">Province</span></dt>
+                <dd>
+                    <span>{{ location.province }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.location.town">Town</span></dt>
+                <dd>
+                    <span>{{ location.town }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.location.cp">Cp</span></dt>
+                <dd>
+                    <span>{{ location.cp }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.location.typeOfRoad">Type Of Road</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'realEstateApp.RoadType.' + location.typeOfRoad }}">{{ location.typeOfRoad }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.location.nameRoad">Name Road</span></dt>
+                <dd>
+                    <span>{{ location.nameRoad }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.location.number">Number</span></dt>
+                <dd>
+                    <span>{{ location.number }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.location.apartment">Apartment</span></dt>
+                <dd>
+                    <span>{{ location.apartment }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.location.building">Building</span></dt>
+                <dd>
+                    <span>{{ location.building }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.location.door">Door</span></dt>
+                <dd>
+                    <span>{{ location.door }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.location.stair">Stair</span></dt>
+                <dd>
+                    <span>{{ location.stair }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.location.urlgmaps">Urlgmaps</span></dt>
+                <dd>
+                    <span>{{ location.urlgmaps }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.location.latitude">Latitude</span></dt>
+                <dd>
+                    <span>{{ location.latitude }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.location.longitude">Longitude</span></dt>
+                <dd>
+                    <span>{{ location.longitude }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/location', location.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,162 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-property-heading" jhiTranslate="realEstateApp.property.home.createOrEditLabel">Create or edit a Property</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.price" for="field_price">Price</label>
+                    <input type="number" class="form-control" name="price" id="field_price"
+                           formControlName="price"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.description" for="field_description">Description</label>
+                    <textarea class="form-control" name="description" id="field_description"
+                              formControlName="description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.buildingType" for="field_buildingType">Building Type</label>
+                    <select class="form-control" name="buildingType" formControlName="buildingType" id="field_buildingType">
+                        <option value="HOUSE">{{ 'realEstateApp.BuildingType.HOUSE' | translate }}</option>
+                        <option value="FLAT">{{ 'realEstateApp.BuildingType.FLAT' | translate }}</option>
+                        <option value="STUDIO">{{ 'realEstateApp.BuildingType.STUDIO' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.serviceType" for="field_serviceType">Service Type</label>
+                    <select class="form-control" name="serviceType" formControlName="serviceType" id="field_serviceType">
+                        <option value="RENT">{{ 'realEstateApp.ServiceType.RENT' | translate }}</option>
+                        <option value="SALE">{{ 'realEstateApp.ServiceType.SALE' | translate }}</option>
+                        <option value="RENT_AND_SALE">{{ 'realEstateApp.ServiceType.RENT_AND_SALE' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.ref" for="field_ref">Ref</label>
+                    <input type="text" class="form-control" name="ref" id="field_ref"
+                           formControlName="ref"/>
+                    <div *ngIf="editForm.get('ref')!.invalid && (editForm.get('ref')!.dirty || editForm.get('ref')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ref')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.visible" for="field_visible">Visible</label>
+                    <input type="checkbox" class="form-control" name="visible" id="field_visible"
+                           formControlName="visible"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.sold" for="field_sold">Sold</label>
+                    <input type="checkbox" class="form-control" name="sold" id="field_sold"
+                           formControlName="sold"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.terrace" for="field_terrace">Terrace</label>
+                    <input type="checkbox" class="form-control" name="terrace" id="field_terrace"
+                           formControlName="terrace"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.m2" for="field_m2">M 2</label>
+                    <input type="number" class="form-control" name="m2" id="field_m2"
+                           formControlName="m2"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.numberBedroom" for="field_numberBedroom">Number Bedroom</label>
+                    <input type="number" class="form-control" name="numberBedroom" id="field_numberBedroom"
+                           formControlName="numberBedroom"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.elevator" for="field_elevator">Elevator</label>
+                    <input type="checkbox" class="form-control" name="elevator" id="field_elevator"
+                           formControlName="elevator"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.furnished" for="field_furnished">Furnished</label>
+                    <input type="checkbox" class="form-control" name="furnished" id="field_furnished"
+                           formControlName="furnished"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.pool" for="field_pool">Pool</label>
+                    <input type="checkbox" class="form-control" name="pool" id="field_pool"
+                           formControlName="pool"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.garage" for="field_garage">Garage</label>
+                    <input type="checkbox" class="form-control" name="garage" id="field_garage"
+                           formControlName="garage"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.numberWC" for="field_numberWC">Number WC</label>
+                    <input type="number" class="form-control" name="numberWC" id="field_numberWC"
+                           formControlName="numberWC"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.ac" for="field_ac">Ac</label>
+                    <input type="checkbox" class="form-control" name="ac" id="field_ac"
+                           formControlName="ac"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.location" for="field_location">Location</label>
+                    <select class="form-control" id="field_location" name="location" formControlName="location">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="locationOption.id === editForm.get('location')!.value?.id ? editForm.get('location')!.value : locationOption" *ngFor="let locationOption of locations; trackBy: trackById">{{ locationOption.ref }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.property.appuser" for="field_appuser">Appuser</label>
+                    <select class="form-control" id="field_appuser" name="appuser" formControlName="appuser">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="appuserOption.id === editForm.get('appuser')!.value?.id ? editForm.get('appuser')!.value : appuserOption" *ngFor="let appuserOption of appusers; trackBy: trackById">{{ appuserOption.login }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

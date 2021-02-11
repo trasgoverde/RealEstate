@@ -1,0 +1,153 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-location-heading" jhiTranslate="realEstateApp.location.home.createOrEditLabel">Create or edit a Location</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.ref" for="field_ref">Ref</label>
+                    <input type="text" class="form-control" name="ref" id="field_ref"
+                           formControlName="ref"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.province" for="field_province">Province</label>
+                    <input type="text" class="form-control" name="province" id="field_province"
+                           formControlName="province"/>
+                    <div *ngIf="editForm.get('province')!.invalid && (editForm.get('province')!.dirty || editForm.get('province')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('province')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.town" for="field_town">Town</label>
+                    <input type="text" class="form-control" name="town" id="field_town"
+                           formControlName="town"/>
+                    <div *ngIf="editForm.get('town')!.invalid && (editForm.get('town')!.dirty || editForm.get('town')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('town')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.cp" for="field_cp">Cp</label>
+                    <input type="text" class="form-control" name="cp" id="field_cp"
+                           formControlName="cp"/>
+                    <div *ngIf="editForm.get('cp')!.invalid && (editForm.get('cp')!.dirty || editForm.get('cp')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cp')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.typeOfRoad" for="field_typeOfRoad">Type Of Road</label>
+                    <select class="form-control" name="typeOfRoad" formControlName="typeOfRoad" id="field_typeOfRoad">
+                        <option value="STREET">{{ 'realEstateApp.RoadType.STREET' | translate }}</option>
+                        <option value="AVENUE">{{ 'realEstateApp.RoadType.AVENUE' | translate }}</option>
+                        <option value="PLACE">{{ 'realEstateApp.RoadType.PLACE' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('typeOfRoad')!.invalid && (editForm.get('typeOfRoad')!.dirty || editForm.get('typeOfRoad')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('typeOfRoad')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.nameRoad" for="field_nameRoad">Name Road</label>
+                    <input type="text" class="form-control" name="nameRoad" id="field_nameRoad"
+                           formControlName="nameRoad"/>
+                    <div *ngIf="editForm.get('nameRoad')!.invalid && (editForm.get('nameRoad')!.dirty || editForm.get('nameRoad')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nameRoad')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.number" for="field_number">Number</label>
+                    <input type="number" class="form-control" name="number" id="field_number"
+                           formControlName="number"/>
+                    <div *ngIf="editForm.get('number')!.invalid && (editForm.get('number')!.dirty || editForm.get('number')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('number')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('number')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.apartment" for="field_apartment">Apartment</label>
+                    <input type="number" class="form-control" name="apartment" id="field_apartment"
+                           formControlName="apartment"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.building" for="field_building">Building</label>
+                    <input type="number" class="form-control" name="building" id="field_building"
+                           formControlName="building"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.door" for="field_door">Door</label>
+                    <input type="number" class="form-control" name="door" id="field_door"
+                           formControlName="door"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.stair" for="field_stair">Stair</label>
+                    <input type="text" class="form-control" name="stair" id="field_stair"
+                           formControlName="stair"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.urlgmaps" for="field_urlgmaps">Urlgmaps</label>
+                    <input type="text" class="form-control" name="urlgmaps" id="field_urlgmaps"
+                           formControlName="urlgmaps"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.latitude" for="field_latitude">Latitude</label>
+                    <input type="number" class="form-control" name="latitude" id="field_latitude"
+                           formControlName="latitude"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="realEstateApp.location.longitude" for="field_longitude">Longitude</label>
+                    <input type="number" class="form-control" name="longitude" id="field_longitude"
+                           formControlName="longitude"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="property">
+            <h2><span jhiTranslate="realEstateApp.property.detail.title">Property</span> {{ property.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="realEstateApp.property.name">Name</span></dt>
+                <dd>
+                    <span>{{ property.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.price">Price</span></dt>
+                <dd>
+                    <span>{{ property.price }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.description">Description</span></dt>
+                <dd>
+                    <span>{{ property.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.buildingType">Building Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'realEstateApp.BuildingType.' + property.buildingType }}">{{ property.buildingType }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.serviceType">Service Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'realEstateApp.ServiceType.' + property.serviceType }}">{{ property.serviceType }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.ref">Ref</span></dt>
+                <dd>
+                    <span>{{ property.ref }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.visible">Visible</span></dt>
+                <dd>
+                    <span>{{ property.visible }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.sold">Sold</span></dt>
+                <dd>
+                    <span>{{ property.sold }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.terrace">Terrace</span></dt>
+                <dd>
+                    <span>{{ property.terrace }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.m2">M 2</span></dt>
+                <dd>
+                    <span>{{ property.m2 }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.numberBedroom">Number Bedroom</span></dt>
+                <dd>
+                    <span>{{ property.numberBedroom }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.elevator">Elevator</span></dt>
+                <dd>
+                    <span>{{ property.elevator }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.furnished">Furnished</span></dt>
+                <dd>
+                    <span>{{ property.furnished }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.pool">Pool</span></dt>
+                <dd>
+                    <span>{{ property.pool }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.garage">Garage</span></dt>
+                <dd>
+                    <span>{{ property.garage }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.numberWC">Number WC</span></dt>
+                <dd>
+                    <span>{{ property.numberWC }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.ac">Ac</span></dt>
+                <dd>
+                    <span>{{ property.ac }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.location">Location</span></dt>
+                <dd>
+                    <div *ngIf="property.location">
+                        <a [routerLink]="['/location', property.location?.id, 'view']">{{ property.location?.ref }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.property.appuser">Appuser</span></dt>
+                <dd>
+                    <div *ngIf="property.appuser">
+                        <a [routerLink]="['/appuser', property.appuser?.id, 'view']">{{ property.appuser?.login }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/property', property.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

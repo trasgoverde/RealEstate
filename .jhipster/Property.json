@@ -1,0 +1,110 @@
+{
+  "name": "Property",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "buildingType",
+      "fieldType": "BuildingType",
+      "fieldValues": "HOUSE,FLAT,STUDIO"
+    },
+    {
+      "fieldName": "serviceType",
+      "fieldType": "ServiceType",
+      "fieldValues": "RENT,SALE,RENT_AND_SALE"
+    },
+    {
+      "fieldName": "ref",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "visible",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "sold",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "terrace",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "m2",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numberBedroom",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "elevator",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "furnished",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "pool",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "garage",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "numberWC",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "ac",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "location",
+      "otherEntityRelationshipName": "property",
+      "relationshipName": "location",
+      "otherEntityField": "ref",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "appuser",
+      "otherEntityRelationshipName": "property",
+      "relationshipName": "appuser",
+      "otherEntityField": "login"
+    }
+  ],
+  "changelogDate": "20210211115937",
+  "entityTableName": "property",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

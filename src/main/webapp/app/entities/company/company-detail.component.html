@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="company">
+            <h2><span jhiTranslate="realEstateApp.company.detail.title">Company</span> {{ company.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="realEstateApp.company.name">Name</span></dt>
+                <dd>
+                    <span>{{ company.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.company.phone">Phone</span></dt>
+                <dd>
+                    <span>{{ company.phone }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.company.email">Email</span></dt>
+                <dd>
+                    <span>{{ company.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.company.cif">Cif</span></dt>
+                <dd>
+                    <span>{{ company.cif }}</span>
+                </dd>
+                <dt><span jhiTranslate="realEstateApp.company.location">Location</span></dt>
+                <dd>
+                    <div *ngIf="company.location">
+                        <a [routerLink]="['/location', company.location?.id, 'view']">{{ company.location?.ref }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/company', company.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

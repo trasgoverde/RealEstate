@@ -1,0 +1,38 @@
+{
+  "realEstateApp": {
+    "location": {
+      "home": {
+        "title": "Locations",
+        "createLabel": "Crear nuevo Location",
+        "createOrEditLabel": "Crear o editar Location",
+        "search": "Buscar Location",
+        "notFound": "Ningún Locations encontrado"
+      },
+      "created": "Un nuevo Location ha sido creado con el identificador {{ param }}",
+      "updated": "Un Location ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Location ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Location {{ id }}?"
+      },
+      "detail": {
+        "title": "Location"
+      },
+      "ref": "Ref",
+      "province": "Province",
+      "town": "Town",
+      "cp": "Cp",
+      "typeOfRoad": "Type Of Road",
+      "nameRoad": "Name Road",
+      "number": "Number",
+      "apartment": "Apartment",
+      "building": "Building",
+      "door": "Door",
+      "stair": "Stair",
+      "urlgmaps": "Urlgmaps",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "company": "Company",
+      "property": "Property"
+    }
+  }
+}

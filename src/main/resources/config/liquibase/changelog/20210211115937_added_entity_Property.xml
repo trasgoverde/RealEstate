@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+        <property name="autoIncrement" value="true"/>
+
+    <!--
+        Added the entity Property.
+    -->
+    <changeSet id="20210211115937-1" author="jhipster">
+        <createTable tableName="property">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="price" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="description" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="building_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="service_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ref" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="visible" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="sold" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="terrace" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="m_2" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="number_bedroom" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="elevator" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="furnished" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="pool" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="garage" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="number_wc" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="ac" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="location_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_property_location_id" />
+            </column>
+            <column name="appuser_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20210211115937-1-relations" author="jhipster">
+
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20210211115937-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/property.csv"
+                  separator=";"
+                  tableName="property">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="price" type="numeric"/>
+            <column name="description" type="clob"/>
+            <column name="building_type" type="string"/>
+            <column name="service_type" type="string"/>
+            <column name="ref" type="string"/>
+            <column name="visible" type="boolean"/>
+            <column name="sold" type="boolean"/>
+            <column name="terrace" type="boolean"/>
+            <column name="m_2" type="numeric"/>
+            <column name="number_bedroom" type="numeric"/>
+            <column name="elevator" type="boolean"/>
+            <column name="furnished" type="boolean"/>
+            <column name="pool" type="boolean"/>
+            <column name="garage" type="boolean"/>
+            <column name="number_wc" type="numeric"/>
+            <column name="ac" type="boolean"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

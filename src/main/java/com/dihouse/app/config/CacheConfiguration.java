@@ -47,6 +47,12 @@ public class CacheConfiguration {
             createCache(cm, com.dihouse.app.domain.User.class.getName());
             createCache(cm, com.dihouse.app.domain.Authority.class.getName());
             createCache(cm, com.dihouse.app.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.dihouse.app.domain.Appuser.class.getName());
+            createCache(cm, com.dihouse.app.domain.Company.class.getName());
+            createCache(cm, com.dihouse.app.domain.Property.class.getName());
+            createCache(cm, com.dihouse.app.domain.Location.class.getName());
+            createCache(cm, com.dihouse.app.domain.Photo.class.getName());
+            createCache(cm, com.dihouse.app.domain.Notification.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

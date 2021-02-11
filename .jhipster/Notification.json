@@ -1,0 +1,42 @@
+{
+  "name": "Notification",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "seen",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "appuser",
+      "otherEntityRelationshipName": "notification",
+      "relationshipName": "appuser",
+      "otherEntityField": "login"
+    }
+  ],
+  "changelogDate": "20210211120237",
+  "entityTableName": "notification",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

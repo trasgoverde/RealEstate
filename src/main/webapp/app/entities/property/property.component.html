@@ -1,0 +1,133 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="realEstateApp.property.home.title">Properties</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-property" [routerLink]="['/property/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="realEstateApp.property.home.createLabel">
+            Create a new Property
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'realEstateApp.property.home.search' | translate }}">
+
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon icon="search"></fa-icon>
+                    </button>
+
+                    <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+                        <fa-icon icon="trash-alt"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="properties?.length === 0">
+        <span jhiTranslate="realEstateApp.property.home.notFound">No properties found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="properties && properties.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="realEstateApp.property.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="price"><span jhiTranslate="realEstateApp.property.price">Price</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="realEstateApp.property.description">Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="buildingType"><span jhiTranslate="realEstateApp.property.buildingType">Building Type</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="serviceType"><span jhiTranslate="realEstateApp.property.serviceType">Service Type</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="ref"><span jhiTranslate="realEstateApp.property.ref">Ref</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="visible"><span jhiTranslate="realEstateApp.property.visible">Visible</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="sold"><span jhiTranslate="realEstateApp.property.sold">Sold</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="terrace"><span jhiTranslate="realEstateApp.property.terrace">Terrace</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="m2"><span jhiTranslate="realEstateApp.property.m2">M 2</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="numberBedroom"><span jhiTranslate="realEstateApp.property.numberBedroom">Number Bedroom</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="elevator"><span jhiTranslate="realEstateApp.property.elevator">Elevator</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="furnished"><span jhiTranslate="realEstateApp.property.furnished">Furnished</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="pool"><span jhiTranslate="realEstateApp.property.pool">Pool</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="garage"><span jhiTranslate="realEstateApp.property.garage">Garage</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="numberWC"><span jhiTranslate="realEstateApp.property.numberWC">Number WC</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="ac"><span jhiTranslate="realEstateApp.property.ac">Ac</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="location.ref"><span jhiTranslate="realEstateApp.property.location">Location</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="appuser.login"><span jhiTranslate="realEstateApp.property.appuser">Appuser</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let property of properties ;trackBy: trackId">
+                    <td><a [routerLink]="['/property', property.id, 'view']">{{ property.id }}</a></td>
+                    <td>{{ property.name }}</td>
+                    <td>{{ property.price }}</td>
+                    <td>{{ property.description }}</td>
+                    <td jhiTranslate="{{ 'realEstateApp.BuildingType.' + property.buildingType }}">{{ property.buildingType }}</td>
+                    <td jhiTranslate="{{ 'realEstateApp.ServiceType.' + property.serviceType }}">{{ property.serviceType }}</td>
+                    <td>{{ property.ref }}</td>
+                    <td>{{ property.visible }}</td>
+                    <td>{{ property.sold }}</td>
+                    <td>{{ property.terrace }}</td>
+                    <td>{{ property.m2 }}</td>
+                    <td>{{ property.numberBedroom }}</td>
+                    <td>{{ property.elevator }}</td>
+                    <td>{{ property.furnished }}</td>
+                    <td>{{ property.pool }}</td>
+                    <td>{{ property.garage }}</td>
+                    <td>{{ property.numberWC }}</td>
+                    <td>{{ property.ac }}</td>
+                    <td>
+                        <div *ngIf="property.location">
+                            <a [routerLink]="['/location', property.location?.id, 'view']" >{{ property.location?.ref }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="property.appuser">
+                            <a [routerLink]="['/appuser', property.appuser?.id, 'view']" >{{ property.appuser?.login }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/property', property.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/property', property.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(property)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="properties && properties.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

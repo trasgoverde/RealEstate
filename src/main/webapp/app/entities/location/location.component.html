@@ -1,0 +1,115 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="realEstateApp.location.home.title">Locations</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-location" [routerLink]="['/location/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="realEstateApp.location.home.createLabel">
+            Create a new Location
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'realEstateApp.location.home.search' | translate }}">
+
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon icon="search"></fa-icon>
+                    </button>
+
+                    <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+                        <fa-icon icon="trash-alt"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="locations?.length === 0">
+        <span jhiTranslate="realEstateApp.location.home.notFound">No locations found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="locations && locations.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="ref"><span jhiTranslate="realEstateApp.location.ref">Ref</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="province"><span jhiTranslate="realEstateApp.location.province">Province</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="town"><span jhiTranslate="realEstateApp.location.town">Town</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cp"><span jhiTranslate="realEstateApp.location.cp">Cp</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="typeOfRoad"><span jhiTranslate="realEstateApp.location.typeOfRoad">Type Of Road</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nameRoad"><span jhiTranslate="realEstateApp.location.nameRoad">Name Road</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="number"><span jhiTranslate="realEstateApp.location.number">Number</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="apartment"><span jhiTranslate="realEstateApp.location.apartment">Apartment</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="building"><span jhiTranslate="realEstateApp.location.building">Building</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="door"><span jhiTranslate="realEstateApp.location.door">Door</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="stair"><span jhiTranslate="realEstateApp.location.stair">Stair</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="urlgmaps"><span jhiTranslate="realEstateApp.location.urlgmaps">Urlgmaps</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="latitude"><span jhiTranslate="realEstateApp.location.latitude">Latitude</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="longitude"><span jhiTranslate="realEstateApp.location.longitude">Longitude</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let location of locations ;trackBy: trackId">
+                    <td><a [routerLink]="['/location', location.id, 'view']">{{ location.id }}</a></td>
+                    <td>{{ location.ref }}</td>
+                    <td>{{ location.province }}</td>
+                    <td>{{ location.town }}</td>
+                    <td>{{ location.cp }}</td>
+                    <td jhiTranslate="{{ 'realEstateApp.RoadType.' + location.typeOfRoad }}">{{ location.typeOfRoad }}</td>
+                    <td>{{ location.nameRoad }}</td>
+                    <td>{{ location.number }}</td>
+                    <td>{{ location.apartment }}</td>
+                    <td>{{ location.building }}</td>
+                    <td>{{ location.door }}</td>
+                    <td>{{ location.stair }}</td>
+                    <td>{{ location.urlgmaps }}</td>
+                    <td>{{ location.latitude }}</td>
+                    <td>{{ location.longitude }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/location', location.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/location', location.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(location)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="locations && locations.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

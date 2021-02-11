@@ -1,0 +1,28 @@
+{
+  "realEstateApp": {
+    "appuser": {
+      "home": {
+        "title": "Appusers",
+        "createLabel": "Crear nuevo Appuser",
+        "createOrEditLabel": "Crear o editar Appuser",
+        "search": "Buscar Appuser",
+        "notFound": "Ningún Appusers encontrado"
+      },
+      "created": "Un nuevo Appuser ha sido creado con el identificador {{ param }}",
+      "updated": "Un Appuser ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Appuser ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Appuser {{ id }}?"
+      },
+      "detail": {
+        "title": "Appuser"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone",
+      "email": "Email",
+      "cif": "Cif",
+      "company": "Company"
+    }
+  }
+}
